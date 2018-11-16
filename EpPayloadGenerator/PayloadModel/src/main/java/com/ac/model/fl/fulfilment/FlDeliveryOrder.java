@@ -1,0 +1,156 @@
+package com.ac.model.fl.fulfilment;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.ac.model.BaseEntity;
+
+@Entity
+@Table(name="FL_DELIVERY_ORDER")
+public class FlDeliveryOrder extends BaseEntity {
+	
+	@Id
+	@Column(name="DELIVERY_ORDER_ID")
+	private Long deliveryOrderId;
+
+	@Column(name="DELIVERY_ORDER_NO")
+	private String deliveryOrderNo;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="EST_END_DATE")
+	private Date estEndDate;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="EST_START_DATE")
+	private Date estStartDate;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="EST_DELIVERY_DATE")
+	private Date estDeliveryDate;
+	
+	@Column(name="SUPPLIER_DO_REF")
+	private String supplierDoRef;
+	
+	@Column(name="DELIVERY_ADDRESS_ID")
+	private Long flDeliveryAddress;
+
+	@Column(name="FULFILMENT_ORDER_ID")
+	private Long flFulfilmentOrder;
+	
+	@Column(name="FULFILMENT_REQ_ID")
+	private Long flRequest;
+
+	@Column(name="GST_REG_NO")
+	private String gstRegNo;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="GST_DECLARED_DATE")
+	private Date gstDeclaredDate;
+		
+	@Temporal(TemporalType.DATE)
+	@Column(name="GST_EFF_DATE")
+	private Date gstEffectiveDate;
+
+	public Long getDeliveryOrderId() {
+		return deliveryOrderId;
+	}
+
+	public void setDeliveryOrderId(Long deliveryOrderId) {
+		this.deliveryOrderId = deliveryOrderId;
+	}
+
+	public String getDeliveryOrderNo() {
+		return deliveryOrderNo;
+	}
+
+	public void setDeliveryOrderNo(String deliveryOrderNo) {
+		this.deliveryOrderNo = deliveryOrderNo;
+	}
+
+	public Date getEstEndDate() {
+		return estEndDate;
+	}
+
+	public void setEstEndDate(Date estEndDate) {
+		this.estEndDate = estEndDate;
+	}
+
+	public Date getEstStartDate() {
+		return estStartDate;
+	}
+
+	public void setEstStartDate(Date estStartDate) {
+		this.estStartDate = estStartDate;
+	}
+
+	public Date getEstDeliveryDate() {
+		return estDeliveryDate;
+	}
+
+	public void setEstDeliveryDate(Date estDeliveryDate) {
+		this.estDeliveryDate = estDeliveryDate;
+	}
+
+	public String getSupplierDoRef() {
+		return supplierDoRef;
+	}
+
+	public void setSupplierDoRef(String supplierDoRef) {
+		this.supplierDoRef = supplierDoRef;
+	}
+
+	public Long getFlDeliveryAddress() {
+		return flDeliveryAddress;
+	}
+
+	public void setFlDeliveryAddress(Long flDeliveryAddress) {
+		this.flDeliveryAddress = flDeliveryAddress;
+	}
+
+	public Long getFlFulfilmentOrder() {
+		return flFulfilmentOrder;
+	}
+
+	public void setFlFulfilmentOrder(Long flFulfilmentOrder) {
+		this.flFulfilmentOrder = flFulfilmentOrder;
+	}
+
+	public Long getFlRequest() {
+		return flRequest;
+	}
+
+	public void setFlRequest(Long flRequest) {
+		this.flRequest = flRequest;
+	}
+
+	public String getGstRegNo() {
+		return gstRegNo;
+	}
+
+	public void setGstRegNo(String gstRegNo) {
+		this.gstRegNo = gstRegNo;
+	}
+
+	public Date getGstDeclaredDate() {
+		return gstDeclaredDate;
+	}
+
+	public void setGstDeclaredDate(Date gstDeclaredDate) {
+		this.gstDeclaredDate = gstDeclaredDate;
+	}
+
+	public Date getGstEffectiveDate() {
+		return gstEffectiveDate;
+	}
+
+	public void setGstEffectiveDate(Date gstEffectiveDate) {
+		this.gstEffectiveDate = gstEffectiveDate;
+	}
+	
+}
