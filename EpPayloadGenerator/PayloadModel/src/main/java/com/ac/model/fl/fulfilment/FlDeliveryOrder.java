@@ -5,11 +5,14 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.ac.model.BaseEntity;
+import com.ac.model.fl.order.FlFulfilmentRequest;
 
 @Entity
 @Table(name="FL_DELIVERY_ORDER")
@@ -43,8 +46,9 @@ public class FlDeliveryOrder extends BaseEntity {
 	@Column(name="FULFILMENT_ORDER_ID")
 	private Long flFulfilmentOrder;
 	
-	@Column(name="FULFILMENT_REQ_ID")
-	private Long flRequest;
+	@ManyToOne
+	@JoinColumn(name="FULFILMENT_REQ_ID")
+	private FlFulfilmentRequest flRequest;
 
 	@Column(name="GST_REG_NO")
 	private String gstRegNo;
@@ -121,11 +125,11 @@ public class FlDeliveryOrder extends BaseEntity {
 		this.flFulfilmentOrder = flFulfilmentOrder;
 	}
 
-	public Long getFlRequest() {
+	public FlFulfilmentRequest getFlRequest() {
 		return flRequest;
 	}
 
-	public void setFlRequest(Long flRequest) {
+	public void setFlRequest(FlFulfilmentRequest flRequest) {
 		this.flRequest = flRequest;
 	}
 

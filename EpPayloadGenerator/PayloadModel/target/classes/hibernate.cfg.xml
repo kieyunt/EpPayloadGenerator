@@ -31,7 +31,8 @@
 
         <!-- <mapping resource="my/ep/entity/fl/FlActor.hbm.xml"/>  -->
         <!-- Names the annotated entity class -->
-		<mapping class="com.ac.model.fl.fulfilment.FlDeliveryOrder"/>		 
+		<mapping class="com.ac.model.fl.fulfilment.FlDeliveryOrder"/>
+		<mapping class="com.ac.model.fl.order.FlFulfilmentRequest"/>			 
 
     </session-factory>
 
