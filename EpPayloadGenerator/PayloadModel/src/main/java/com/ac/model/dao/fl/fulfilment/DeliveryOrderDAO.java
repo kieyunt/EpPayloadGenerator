@@ -24,4 +24,18 @@ public class DeliveryOrderDAO extends GenericDAO {
 			return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public FlDeliveryOrder retrieveDeliveryOrderByNo(String deliveryOrderNo) {
+		Session session = getSessionFactory().openSession();
+		session.beginTransaction();
+		Query<FlDeliveryOrder> query = session.createQuery("from FlDeliveryOrder e where e.deliveryOrderNo = :deliveryOrderNo ");
+		query.setParameter("deliveryOrderNo", deliveryOrderNo);
+		List<FlDeliveryOrder> flDeliveryOrders = query.list();
+		session.getTransaction().commit();
+		if(!flDeliveryOrders.isEmpty())
+			return flDeliveryOrders.get(0);
+		else 
+			return null;
+	}
+	
 }
