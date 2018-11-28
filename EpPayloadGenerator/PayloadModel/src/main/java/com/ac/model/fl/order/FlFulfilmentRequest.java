@@ -5,12 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.ac.model.BaseEntity;
+import com.ac.model.pm.PmAgOffice;
 
 @Entity
 @Table(name="FL_FULFILMENT_REQUEST")
@@ -32,8 +36,9 @@ public class FlFulfilmentRequest extends BaseEntity {
 	@Column(name="IS_MTO")
 	private boolean isMto;
 
-	@Column(name="AG_OFFICE_ID")
-	private Long agOfficeId;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="AG_OFFICE_ID")
+	private PmAgOffice agOffice;
 
 	@Column(name="AG_OFFICE_NAME")
 	private String agOfficeName;
@@ -165,12 +170,12 @@ public class FlFulfilmentRequest extends BaseEntity {
 		this.isMto = isMto;
 	}
 
-	public Long getAgOfficeId() {
-		return agOfficeId;
+	public PmAgOffice getAgOffice() {
+		return agOffice;
 	}
 
-	public void setAgOfficeId(Long agOfficeId) {
-		this.agOfficeId = agOfficeId;
+	public void setAgOffice(PmAgOffice agOffice) {
+		this.agOffice = agOffice;
 	}
 
 	public String getAgOfficeName() {

@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.ac.model.BaseEntity;
+import com.ac.model.fl.order.FlFulfilmentOrder;
 import com.ac.model.fl.order.FlFulfilmentRequest;
 
 @Entity
@@ -43,8 +44,9 @@ public class FlDeliveryOrder extends BaseEntity {
 	@Column(name="DELIVERY_ADDRESS_ID")
 	private Long flDeliveryAddress;
 
-	@Column(name="FULFILMENT_ORDER_ID")
-	private Long flFulfilmentOrder;
+	@ManyToOne
+	@JoinColumn(name="FULFILMENT_ORDER_ID")
+	private FlFulfilmentOrder flFulfilmentOrder;
 	
 	@ManyToOne
 	@JoinColumn(name="FULFILMENT_REQ_ID")
@@ -117,11 +119,11 @@ public class FlDeliveryOrder extends BaseEntity {
 		this.flDeliveryAddress = flDeliveryAddress;
 	}
 
-	public Long getFlFulfilmentOrder() {
+	public FlFulfilmentOrder getFlFulfilmentOrder() {
 		return flFulfilmentOrder;
 	}
 
-	public void setFlFulfilmentOrder(Long flFulfilmentOrder) {
+	public void setFlFulfilmentOrder(FlFulfilmentOrder flFulfilmentOrder) {
 		this.flFulfilmentOrder = flFulfilmentOrder;
 	}
 
