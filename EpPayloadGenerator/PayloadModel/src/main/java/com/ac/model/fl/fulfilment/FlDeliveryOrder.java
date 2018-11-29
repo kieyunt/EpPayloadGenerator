@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.ac.model.BaseEntity;
+import com.ac.model.fl.order.FlDeliveryAddress;
 import com.ac.model.fl.order.FlFulfilmentOrder;
 import com.ac.model.fl.order.FlFulfilmentRequest;
 
@@ -41,8 +43,9 @@ public class FlDeliveryOrder extends BaseEntity {
 	@Column(name="SUPPLIER_DO_REF")
 	private String supplierDoRef;
 	
-	@Column(name="DELIVERY_ADDRESS_ID")
-	private Long flDeliveryAddress;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="DELIVERY_ADDRESS_ID")
+	private FlDeliveryAddress flDeliveryAddress;
 
 	@ManyToOne
 	@JoinColumn(name="FULFILMENT_ORDER_ID")
@@ -111,11 +114,11 @@ public class FlDeliveryOrder extends BaseEntity {
 		this.supplierDoRef = supplierDoRef;
 	}
 
-	public Long getFlDeliveryAddress() {
+	public FlDeliveryAddress getFlDeliveryAddress() {
 		return flDeliveryAddress;
 	}
 
-	public void setFlDeliveryAddress(Long flDeliveryAddress) {
+	public void setFlDeliveryAddress(FlDeliveryAddress flDeliveryAddress) {
 		this.flDeliveryAddress = flDeliveryAddress;
 	}
 

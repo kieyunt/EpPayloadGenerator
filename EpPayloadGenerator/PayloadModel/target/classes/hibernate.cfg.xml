@@ -34,8 +34,11 @@
 		<mapping class="com.ac.model.fl.fulfilment.FlDeliveryOrder"/>
 		<mapping class="com.ac.model.fl.order.FlFulfilmentRequest"/>
 		<mapping class="com.ac.model.fl.order.FlFulfilmentOrder"/>
+		<mapping class="com.ac.model.fl.order.FlDeliveryAddress"/>
 		
-		<mapping class="com.ac.model.pm.PmAgOffice"/>					 
+		<mapping class="com.ac.model.pm.PmAgOffice"/>
+		<mapping class="com.ac.model.pm.PmAddressType"/>
+		<mapping class="com.ac.model.pm.PmUser"/>
 
     </session-factory>
 

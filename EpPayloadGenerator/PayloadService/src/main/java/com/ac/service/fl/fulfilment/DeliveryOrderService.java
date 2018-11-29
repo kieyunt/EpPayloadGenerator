@@ -1,23 +1,31 @@
 package com.ac.service.fl.fulfilment;
 
 import java.util.Date;
+import java.util.List;
 
 import com.ac.model.dao.DAODelegate;
 import com.ac.model.dao.fl.fulfilment.DeliveryOrderDAO;
+import com.ac.model.dao.pm.AddressTypeDAO;
 import com.ac.model.fl.fulfilment.FlDeliveryOrder;
+import com.ac.model.pm.PmAddressType;
 import com.ac.util.BpmCommonUtils;
 
+import my.ep.jaxb.fl.common.user.FLUserDataType;
 import my.ep.jaxb.fl.dodata.FLDeliveryOrderDataType;
 import my.ep.jaxb.fl.dodata.list.FLDeliveryOrderListDataType;
 
 public class DeliveryOrderService {
 
+	private static String CALENDAR_PUTRAJAYA = "PUTRAJAYA";
+	
 	/**
 	 * Generate DO Payload
 	 * @param documentId accept deliveryOrderId, deliveryOrderNo
 	 * @throws Exception 
 	 */
 	public void generateDeliveryOrderPayload(String documentId) throws Exception {
+		AddressTypeDAO addressTypeDAO = DAODelegate.getInstance().getDataObject(AddressTypeDAO.class);
+		
 		FLDeliveryOrderListDataType doList = new FLDeliveryOrderListDataType();
 		FLDeliveryOrderDataType deliveryOrderDataType = new FLDeliveryOrderDataType();
 		
@@ -39,6 +47,24 @@ public class DeliveryOrderService {
 		deliveryOrderDataType.setOrderName(flDeliveryOrder.getFlRequest().getTitle());
 		deliveryOrderDataType.setSapOrderNo(flDeliveryOrder.getFlFulfilmentOrder().getSapOrderNo());
 		deliveryOrderDataType.setBusinessArea(flDeliveryOrder.getFlRequest().getAgOffice().getOfficeCode());
+		
+		//Get receiving officer list
+		Long addressId = flDeliveryOrder.getFlDeliveryAddress().getPmAddressId();
+		if(flDeliveryOrder.getFlDeliveryAddress().getReceivingGrp()!=null && flDeliveryOrder.getFlDeliveryAddress().getReceivingGrp().getAddressTypeId()!=null) { // in case of Manual address
+			addressId = flDeliveryOrder.getFlDeliveryAddress().getReceivingGrp().getPmAddressId();
+		}
+		List<PmAddressType> addressTypeList = addressTypeDAO.retrieveAddressType("R", addressId);
+		for(PmAddressType addressType : addressTypeList) {
+			if(addressType.getPmUser().getRecordStatusFlg().intValue()==1) {
+				FLUserDataType userDataType = new FLUserDataType();
+				userDataType.setUserId(addressType.getPmUser().getUserId());
+				userDataType.setUserLoginId(addressType.getPmUser().getLoginId());
+				userDataType.setUserName(BpmCommonUtils.trimUserNameAsIDD(addressType.getPmUser().getUserName()));
+				userDataType.setCalendarName(CALENDAR_PUTRAJAYA);
+				userDataType.setDesignation(BpmCommonUtils.trimDesignationAsIDD(addressType.getPmUser().getDesignation()));
+				deliveryOrderDataType.getReceivingOfficerList().add(userDataType);
+			}
+		}
 	}
 	
 	private FlDeliveryOrder findDeliveryOrderId(String documentId) throws Exception {
