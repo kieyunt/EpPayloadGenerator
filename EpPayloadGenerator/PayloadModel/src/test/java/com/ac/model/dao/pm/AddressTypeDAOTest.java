@@ -25,7 +25,7 @@ public class AddressTypeDAOTest extends TestCase {
 		System.out.println("Object : "+addressTypeList);
 		if(addressTypeList!=null) {
 			for(PmAddressType addressType : addressTypeList) {
-				System.out.println(addressType.getAddressTypeId()+"|"+addressType.getAddressType()+"|"+addressType.getPmUserId());
+				System.out.println(addressType.getAddressTypeId()+"|"+addressType.getAddressType()+"|"+addressType.getPmUser().getUserId());
 			}
 		}
 		assertTrue(addressTypeList!=null);
