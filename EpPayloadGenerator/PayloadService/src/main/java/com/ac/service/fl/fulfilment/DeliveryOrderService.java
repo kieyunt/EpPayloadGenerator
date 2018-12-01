@@ -6,9 +6,12 @@ import java.util.List;
 import com.ac.model.dao.DAODelegate;
 import com.ac.model.dao.fl.fulfilment.DeliveryOrderDAO;
 import com.ac.model.dao.pm.AddressTypeDAO;
+import com.ac.model.dao.sm.SmPersonnelDAO;
 import com.ac.model.fl.fulfilment.FlDeliveryOrder;
 import com.ac.model.pm.PmAddressType;
+import com.ac.model.sm.SmPersonnel;
 import com.ac.util.BpmCommonUtils;
+import com.ac.util.xml.Parser;
 
 import my.ep.jaxb.fl.common.user.FLUserDataType;
 import my.ep.jaxb.fl.dodata.FLDeliveryOrderDataType;
@@ -25,6 +28,7 @@ public class DeliveryOrderService {
 	 */
 	public void generateDeliveryOrderPayload(String documentId) throws Exception {
 		AddressTypeDAO addressTypeDAO = DAODelegate.getInstance().getDataObject(AddressTypeDAO.class);
+		SmPersonnelDAO personnelDAO = DAODelegate.getInstance().getDataObject(SmPersonnelDAO.class);
 		
 		FLDeliveryOrderListDataType doList = new FLDeliveryOrderListDataType();
 		FLDeliveryOrderDataType deliveryOrderDataType = new FLDeliveryOrderDataType();
@@ -65,6 +69,26 @@ public class DeliveryOrderService {
 				deliveryOrderDataType.getReceivingOfficerList().add(userDataType);
 			}
 		}
+		doList.getDeliveryOrderList().add(deliveryOrderDataType);
+		
+		List<SmPersonnel> personnelList = personnelDAO.retrieveSmPersonnel(flDeliveryOrder.getFlRequest().getSmSupplierId());
+		int size = 0; 
+		for(SmPersonnel personnel : personnelList){
+			size = size + personnel.getPmUser().getLoginId().length() + 1;
+			if(size>1000) {
+				break;
+			}
+			FLUserDataType suppliers = new FLUserDataType();
+			suppliers.setUserId(personnel.getPmUser().getUserId());
+			suppliers.setUserLoginId(personnel.getPmUser().getLoginId());
+			suppliers.setUserName(BpmCommonUtils.trimUserNameAsIDD(personnel.getPmUser().getUserName()));
+			suppliers.setCalendarName(CALENDAR_PUTRAJAYA);
+			suppliers.setDesignation(BpmCommonUtils.trimDesignationAsIDD(personnel.getPmUser().getDesignation()));
+			doList.getSupplierList().add(suppliers);
+		}
+		
+		String xml = "<!-- Submit DO -->\r\n"+Parser.getInstance().parseObj(doList).replaceAll("\n", "\r\n");	
+		System.out.println(xml);
 	}
 	
 	private FlDeliveryOrder findDeliveryOrderId(String documentId) throws Exception {

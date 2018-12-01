@@ -15,7 +15,7 @@
         <property name="connection.password">ng3pd3vft</property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">10</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
@@ -39,6 +39,10 @@
 		<mapping class="com.ac.model.pm.PmAgOffice"/>
 		<mapping class="com.ac.model.pm.PmAddressType"/>
 		<mapping class="com.ac.model.pm.PmUser"/>
+		
+		<mapping class="com.ac.model.sm.SmSupplier"/>
+		<mapping class="com.ac.model.sm.SmAppl"/>
+		<mapping class="com.ac.model.sm.SmPersonnel"/>
 
     </session-factory>
 

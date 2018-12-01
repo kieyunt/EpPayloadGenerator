@@ -38,7 +38,7 @@ public class FlDeliveryOrderTest extends TestCase {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<FlDeliveryOrder> flDeliveryOrders = session.createQuery("from FlDeliveryOrder").setMaxResults(10).list();
-		flDeliveryOrders.forEach(a->System.out.println(a.getDeliveryOrderId()+"|"+a.getDeliveryOrderNo()+"|"+a.getCreatedDate()+"|"+a.getFlRequest().getDocNo()+"|"+a.getFlFulfilmentOrder().getDocNo()+"|"+a.getFlRequest().getAgOffice().getOfficeCode()+"|"+a.getFlDeliveryAddress().getPmAddressId()));
+		flDeliveryOrders.forEach(a->System.out.println(a.getDeliveryOrderId()+"|"+a.getDeliveryOrderNo()+"|"+a.getCreatedDate()+"|"+a.getFlRequest().getDocNo()+"|"+a.getFlFulfilmentOrder().getDocNo()+"|"+a.getFlRequest().getSmSupplierId()+"|"+a.getFlDeliveryAddress().getPmAddressId()));
 		session.getTransaction().commit();
 		session.close();
 		assertTrue(flDeliveryOrders.size()>0);
