@@ -26,7 +26,7 @@ public class DeliveryOrderService {
 	 * @param documentId accept deliveryOrderId, deliveryOrderNo
 	 * @throws Exception 
 	 */
-	public void generateDeliveryOrderPayload(String documentId) throws Exception {
+	public String generateDeliveryOrderPayload(String documentId) throws Exception {
 		AddressTypeDAO addressTypeDAO = DAODelegate.getInstance().getDataObject(AddressTypeDAO.class);
 		SmPersonnelDAO personnelDAO = DAODelegate.getInstance().getDataObject(SmPersonnelDAO.class);
 		
@@ -88,7 +88,7 @@ public class DeliveryOrderService {
 		}
 		
 		String xml = "<!-- Submit DO -->\r\n"+Parser.getInstance().parseObj(doList).replaceAll("\n", "\r\n");	
-		System.out.println(xml);
+		return xml;
 	}
 	
 	private FlDeliveryOrder findDeliveryOrderId(String documentId) throws Exception {

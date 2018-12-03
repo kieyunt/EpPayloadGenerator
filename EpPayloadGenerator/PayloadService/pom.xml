@@ -7,9 +7,8 @@
     <artifactId>EpPayloadGenerator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.ac</groupId>
+  <groupId>com.ac.service</groupId>
   <artifactId>PayloadService</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>PayloadService</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -27,5 +26,10 @@
 	    <artifactId>jaxb-impl</artifactId>
 	    <version>2.2.4</version>
 	</dependency>    
+	<dependency>
+	    <groupId>com.ac.model</groupId>
+	    <artifactId>PayloadModel</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</dependency> 	
   </dependencies>
 </project>

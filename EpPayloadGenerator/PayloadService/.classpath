@@ -23,7 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/PayloadModel"/>
 	<classpathentry kind="lib" path="lib/NGeP-bpm-schema.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

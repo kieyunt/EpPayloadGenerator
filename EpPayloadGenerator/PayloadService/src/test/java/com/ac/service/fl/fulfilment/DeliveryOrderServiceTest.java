@@ -17,7 +17,7 @@ public class DeliveryOrderServiceTest extends TestCase {
 	}
 	
 	public void testGenerateDeliveryOrderPayload() throws Exception {
-		deliveryOrderService.generateDeliveryOrderPayload("00000000641400014");
+		System.out.println(deliveryOrderService.generateDeliveryOrderPayload("00000000641400014"));
 		assertTrue(true);
 	}
 }
