@@ -7,6 +7,7 @@
     <artifactId>EpPayloadGenerator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  <packaging>jar</packaging>
   <groupId>com.ac.service</groupId>
   <artifactId>PayloadService</artifactId>
   <name>PayloadService</name>
@@ -30,6 +31,7 @@
 	    <groupId>com.ac.model</groupId>
 	    <artifactId>PayloadModel</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
-	</dependency> 	
+	</dependency> 		
   </dependencies>
+  
 </project>

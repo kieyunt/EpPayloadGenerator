@@ -9,6 +9,7 @@
   </parent>
   <groupId>com.ac.model</groupId>
   <artifactId>PayloadModel</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <name>PayloadModel</name>
   <url>http://maven.apache.org</url>
   <properties>

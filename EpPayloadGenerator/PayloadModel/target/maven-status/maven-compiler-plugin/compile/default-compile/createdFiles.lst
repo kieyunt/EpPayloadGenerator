@@ -1,3 +1,17 @@
+com\ac\model\dao\fl\fulfilment\DeliveryOrderDAO.class
+com\ac\model\pm\PmUser.class
+com\ac\model\dao\sm\SmPersonnelDAO.class
 com\ac\model\BaseEntity.class
+com\ac\model\pm\PmAgOffice.class
 com\ac\model\fl\fulfilment\FlDeliveryOrder.class
+com\ac\model\fl\order\FlFulfilmentRequest.class
+com\ac\model\dao\pm\AddressTypeDAO.class
+com\ac\model\fl\order\FlFulfilmentOrder.class
+com\ac\model\sm\SmSupplier.class
+com\ac\model\dao\DAODelegate.class
+com\ac\model\fl\order\FlDeliveryAddress.class
 com\ac\model\App.class
+com\ac\model\sm\SmPersonnel.class
+com\ac\model\pm\PmAddressType.class
+com\ac\model\dao\GenericDAO.class
+com\ac\model\sm\SmAppl.class
